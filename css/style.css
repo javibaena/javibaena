@@ -1,0 +1,2609 @@
+/* Parametros */
+@font-face {
+  font-family: 'Aboreto';
+  src: url('../fonts/Aboreto/Aboreto-Regular.woff2') format('woff2'),
+       url('../fonts/Aboreto/Aboreto-Regular.woff') format('woff'),
+       url('../fonts/Aboreto/Aboreto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+       url('../fonts/Roboto/Roboto-Regular.woff') format('woff'),
+       url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/Open_Sans/static/OpenSans/OpenSans-Bold.woff2') format('woff2'),
+       url('../fonts/Open_Sans/static/OpenSans/OpenSans-Bold.woff') format('woff'),
+       url('../fonts/Open_Sans/static/OpenSans/OpenSans-Bold.ttf') format('truetype');
+}
+
+/* Variables */
+:root{
+  --fuente-titulo:'Aboreto', cursive;
+  --fuente-cuerpo:'Work Sans', sans-serif ;
+  --fuente-detalles: 'Open Sans', sans-serif;
+  --peso-titulo: 700;
+  --peso-cuerpo: 400;
+  --size-h1: 25px;
+  --size-h2: 22px;
+  --size-h3: 16px;
+  --size-cuerpo: 13px;
+  --color-principal:#f3f0f0;
+  --color-negro:#0c0f0f; 
+  --color-secundario:gray;
+  --padding-web: 4%;
+  --margin-left: 20px;
+}
+/* Normalizadores */
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  cursor: crosshair;  
+}
+
+body{
+  overflow-x: hidden !important;
+}
+/* cursor */
+#cursor{
+  width: 35px;
+  height: 35px;
+  background-color: orange;
+  opacity: 1;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 3000;
+  transition: 0.13s;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  display: none;
+}
+/* carga */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:var(--color-principal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* .loader-bar {
+  width: 0;
+  height: 20px;
+  background-color:#e31c0e;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+} */
+
+.loader-text {
+  color: var(--color-secundario);
+  margin-top: 10px;
+  font-family: var(--fuente-titulo);
+}
+
+/* fin de carga */
+/* fin cursor */
+.nav a:hover ~ .cursor{
+    transform: scale(5);
+} 
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--fuente-titulo);
+  font-weight: var(--peso-titulo);
+}
+h1, h4{
+  font-size: var(--size-h1);
+}
+h2, h5{
+  font-size: var(--size-h2);
+}
+h3, h6{
+  font-size: var(--size-h3);
+}
+p{
+  font-family: var(--fuente-cuerpo);
+  font-weight: var(--peso-cuerpo);
+  font-size: var(--size-cuerpo);
+}
+li{
+  font-family: var(--fuente-cuerpo);
+  font-weight: var(--peso-cuerpo);
+  font-size: var(--size-cuerpo);
+  color: var(--color-secundario);
+  margin: 20px;
+  list-style: none;
+}
+a{
+  font-family: var(--fuente-titulo);
+  text-decoration: none;
+  /*flex*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button{
+  border: none;
+  background-color: transparent;
+  /*flex*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.prueba{
+  font-family: var(--fuente-detalles);
+}
+  /*  animaciones  */ 
+  /* rotar palabra */
+  .containerTextoAnimado {
+    position: relative;
+    overflow: hidden;
+  }
+  .fade-in-and-rotate {
+    color: red;
+    opacity: 0;
+    transform: rotateX(90deg);
+    transform: rotateX(50deg) rotateY(-15deg);
+    transform-origin: top center;
+    transition: opacity 1s ease-in-out, transform 1.5s ease-in-out;
+  }
+  /* fin rotar palabra */
+  /* aparicion con crecimieto */
+  .cuadrado {
+    opacity: 0;
+    animation: crecer 1.5s forwards;
+  }
+  @keyframes crecer {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: 100px;
+      opacity: 1;
+    }
+  }
+  /* fin de crecimiento */
+  /* animacion palabra texto */
+  .animated-text {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  /* animnacion imagen */
+  .zoom-out-image {
+    transform: scale(1);
+    transition: transform 1s ease;
+  }
+  /* fin animaciones */
+/* Reglas recursivas */
+/* Reglas generales */
+.marco{
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+  background-color: var(--color-principal);
+}
+/* header index */
+header{
+  width: 100%;
+  height:40px;
+  background-color: transparent;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  left: 0px;
+  z-index: 150;
+}
+nav{
+  width: 100%;
+  height:40px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a{
+  margin: 20px;
+  color: var(--color-negro);
+}
+/* menu */
+.divMenu{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-principal);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  display: none;
+}
+.active{
+  display: block;
+}
+.menu{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-principal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.indice, .redes{
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.indice a{
+  margin: 10px 0;
+  font-size: 35px;
+  color: var(--color-negro);
+}
+.redes a{
+  margin: 20px 0;
+}
+.emailPhone{
+  display: flex;
+  flex-direction: column;
+}
+.emailD, .telefono{
+  margin: 20px 0;
+}
+.emailD p, .telefono p{
+  margin: 10px 0;
+}
+.emailPhone, .soccial{
+  margin: 20px 0;
+}
+.soccial{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.soccial a{
+  font-size: 27px;
+  margin: 20px;
+}
+
+/* fin menu */
+/* fin del header */
+
+/* palabras moviles 1 */
+/* main (primera parte) */
+.MainParteSupeior{
+ width: 100%;
+ height: 100vh;
+ background-color: var(--color-principal);
+}
+.contenerdorInit {
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 100px;
+  position:fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Para ocultar la barra de scroll vertical */
+  background-color:var(--color-principal);
+}
+.palabra-container {
+  width: 100%;
+  letter-spacing: -5px;
+  font-style: italic;
+  position: relative;
+  top: 1%;
+  left: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ocultar el desplazamiento horizontal */;
+}
+.palabra-containerDos{
+  width: 100%;
+  position: relative;
+  top: 1%;
+  left: 15%;
+  font-style: italic;
+  letter-spacing: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ocultar el desplazamiento horizontal */
+}
+.palabra-containerTres{
+  font-style: italic;
+  width: 100%;
+  position: relative;
+  top: 1%;
+  left: 10%; 
+  letter-spacing: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ocultar el desplazamiento horizontal */
+}
+.palabra-containerCuatro{
+  font-style: italic;
+  width:100%;
+  position: relative;
+  top: 1%;
+  left: 5%;
+  letter-spacing: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ocultar el desplazamiento horizontal */
+}
+.palabra-containerText{
+  width: 100px;
+  height: 200px;
+  margin-right: 50%;
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+}
+.contenerdorInit div p{
+  font-weight:550;
+  color: var(--color-negro);
+  font-size: 65px;
+  font-family: var(--fuente-titulo);
+  line-height: 0.9;
+} 
+.primeraPalabra {
+  width: 100%;
+  font-size: 20px;
+  white-space: nowrap; /* Evitar que la palabra se divida en varias líneas */
+  transition: transform 0.5s ease;
+}
+.primeraPalabraDos{
+  width: 100%;
+  font-size: 20px;
+  white-space: nowrap; /* Evitar que la palabra se divida en varias líneas */
+  transition: transform 0.5s ease;
+}
+.primeraPalabraTres{
+  width: 100%;
+  font-size: 20px;
+  white-space: nowrap; /* Evitar que la palabra se divida en varias líneas */
+  transition: transform 0.5s ease;
+}
+.primeraPalabraCuatro{
+  width: 100%;
+  font-size: 20px;
+  white-space: nowrap; /* Evitar que la palabra se divida en varias líneas */
+  transition: transform 0.5s ease;
+}
+/* imagenes primera section/ carrousel estatico */
+/* cuadro imagenes */
+.sectionRelative{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: 40px;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cuadrito{
+  width: 125px;
+  height: 80px;
+  border-radius: 17px;
+  position: absolute;
+  top: 1%;
+  left: 8%;
+}
+.cuadritoDos{
+  margin-left: 100px;
+  width: 125px;
+  height: 80px;
+  border-radius: 17px;
+  position: absolute;
+  top: 11%;
+  right: 8%;
+}
+.cuadritoTres{
+  margin-right: 100px;
+  width: 125px;
+  height: 80px;
+  border-radius: 17px;
+  position: absolute;
+  bottom: 10%;
+  left: 8%;
+}
+.cuadritoCuatro{
+  margin-bottom: 100px;
+  width: 125px;
+  height: 80px;
+  border-radius: 17px;
+  position: absolute;
+  bottom: 12%;
+  right: 7%;
+}
+/* texto fijo */
+/* botton para volver a la parte superior de la web */
+.arriba{
+  color: var(--color-principal);
+  width: 150px;
+  height: 45px;
+  position: fixed;
+  bottom: 25px;
+  right: 0px;
+  z-index: 150;
+}
+.textoHeader{
+  color: var(--color-negro);
+  width: 150px;
+  position: absolute;
+  bottom: 22%;
+  left: 5%;
+  z-index: 0;
+}
+.textoHeader p{
+  font-size: 13px;
+}
+/* carrousel imagens */
+.contenedor-imagenes, .contenedor-imagenesDos, .contenedor-imagenesTres, .contenedor-imagenesCuatro {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.contenedor-imagenes img, .contenedor-imagenesDos img, .contenedor-imagenesTres img,.contenedor-imagenesCuatro img{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  display: none; 
+}
+.mostrar-imagen {
+  display: block;
+  animation: fade 1s ease-in-out;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* fin carrousel imagenes */
+/* fin del main */
+
+/* segunda section primeros ROtulos */
+  /* rotulos */
+/* tres */
+.container  {
+  margin-top: 300px;
+  width: 100%;
+  height: 300px;
+  background-color: var(--color-negro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  overflow: hidden;
+  position: relative;
+  top: 0vh;
+  left: 0;
+  z-index: 110;
+}  
+.scroll-container {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+.left {
+  direction: ltr; /* Desplazamiento hacia la izquierda */
+}
+.right {
+  direction: rtl; /* Desplazamiento hacia la derecha */
+}
+.move {
+  width: 100%;
+  flex: 0 0 60vw; /* Ocupar exactamente el ancho de la pantalla */
+   min-width: 60vw;
+  height: 50px;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: transform 0.5s ease;
+  letter-spacing: 1px;
+  font-family: var(--fuente-titulo);
+}
+.move1{
+  background-color: blue;
+  letter-spacing: 1px;
+  font-family: var(--fuente-titulo);
+}
+.move2{
+  font-family: var(--fuente-cuerpo);
+}
+/* fin del primer rotulo */
+
+/* segundo texto animado */
+.containerPalabrasDos{
+  height: 50vh;
+  width: 100%;
+  padding: 20px 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:var(--color-negro);
+}
+.word-container, .word-containerDos,.word-containerTres,.word-containerCuatro,.word-containerCinco,.word-containerSeis,.word-containerSiete {
+  width: 100%;
+  height: 100%; /* Aseguramos que el contenedor ocupe todo el espacio disponible */
+  position: relative;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ocultar el desplazamiento horizontal */
+}
+.word, .wordDos, .wordTres,.wordCuatro,.wordCinco, .wordSeis,.wordSiete {
+  font-family: var(--fuente-titulo);
+  width: 50%;
+  font-size: 40px;
+  white-space: nowrap; /* Evitar que la palabra se divida en varias líneas */
+  transition: transform 0.5s ease;
+  color:var(--color-principal);
+}
+.word{
+  position: absolute;
+  top: 0px;
+  left: 80px;
+}
+.wordCuatro{
+  position: absolute;
+  top: 0px;
+  left: 130px;
+}
+.wordTres{
+  position: absolute;
+  top: 0px;
+  left: 110px;
+}
+.wordDos{
+  position: absolute;
+  top: 0px;
+  left: 120px;
+}
+.wordCinco{
+  position: absolute;
+  top: 0px;
+  left: 80px;
+}
+.wordSeis{
+  position: absolute;
+  top: 0px;
+  left: 160px;
+}
+.wordSiete{
+  position: absolute;
+  top: 0px;
+  left: 180px;
+}
+/* fin segundas palabras con movimientos  */
+
+
+
+
+
+
+
+/* portfolio */
+/* primer parrafo */
+.trabajos{
+  width: 100%;
+  background-color: var(--color-negro);
+}
+.primerParrafo{
+  padding: 5%;
+  background-color: var(--color-negro);
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.primerParrafo p{
+  font-weight: 100;
+  font-size: 17px;
+  font-family: var(--fuente-cuerpo);
+  color: var(--color-principal);
+}
+.tituloWords{
+  width: 100%;
+  height: 50vh;
+  background-color:var(--color-negro);
+  padding: 80px 0;
+}
+.containerTextoAnimado h2{
+  color: var(--color-principal);
+  width: 100%;
+  height: 150px !important;
+  padding: 5%;
+  color: var(--color-principal);
+  font-family: var(--fuente-titulo);
+  font-size: 50px;
+}
+/* final primmer parrafo */
+/* links */
+.enlacesWords{
+  width: 100%;
+  background-color: var(--color-negro);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.contenedorImgPc{
+  display: none;
+}
+.link{
+  width: 95%;
+  height: 270px;
+  margin: 30px;
+  border-radius: 17px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.azul{
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  font-size: 35px;
+  color: var(--color-principal);
+  font-weight: 400;
+  text-decoration: underline;
+  align-items: center;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 250;
+}
+.imagenLINK{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+/* fin de links */
+/* about */
+.textosAbout{
+  width: 100%;
+  padding-top: 20px;
+  background-color: var(--color-principal);
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.primerParrafoAbout{
+  padding-bottom: 50px;
+}
+.about {
+  margin: 0px 5% 0px;
+  padding-bottom: 20px;
+}
+.about:last-child{
+  padding-bottom: 100px;
+}
+.about h2,.about p{
+  font-family: var(--fuente-cuerpo);
+  color: var(--color-negro);
+}
+.about h2{
+  font-weight: 400;
+  margin: 20px 0;
+}
+.about p{
+  font-size: 15px;
+  font-weight: 100;
+}
+/*    rotulos  2 */
+.containerAbout  {
+   width: 100%;
+  height: 300px;
+  background-color: var(--color-principal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  overflow: hidden;
+  position: relative;
+  top: 0vh;
+  left: 0;
+  z-index: 110;
+}  
+.scroll-containerAbout {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+.moveAbout {
+  flex: 0 0 60vw; /* Ocupar exactamente el ancho de la pantalla */
+  min-width: 60vw;
+  height: 50px;
+  color: var(--color-negro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: transform 0.5s ease;
+  letter-spacing: 1px;
+  font-family: var(--fuente-titulo);
+}
+.moveAbout2{
+   font-family: var(--fuente-cuerpo);
+}
+/* fin rotulos 2 about */
+
+
+
+/* contacto */
+/* rotulos 3 */
+.containerContact{
+  width: 100%;
+  height: 200px;
+  background-color: var(--color-negro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  overflow: hidden;
+  position: relative;
+  top: 0vh;
+  left: 0;
+  z-index: 110;
+}  
+.scroll-containerContact {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+.contact{
+  flex: 0 0 60vw; /* Ocupar exactamente el ancho de la pantalla */
+   min-width: 60vw;
+  height: 40px;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  transition: transform 0.5s ease;
+  letter-spacing: 3px;
+  font-family: var(--fuente-titulo);
+}
+.contact2{
+  font-family: var(--fuente-cuerpo);
+}
+/* fin rotulo 3 contact */
+
+
+
+
+/* footer */
+footer{
+  width: 100%;
+  height: 110vh;
+  background-color: var(--color-negro);
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+} 
+.textoFooter{
+  width: 45%;
+  height: 50px;
+  padding: 5%;
+}
+.textoFooter p{
+  line-height: 1.4;
+  font-size: 15px;
+  color: var(--color-principal);
+}
+.contactos{
+  width: 90vw;
+  height: 50vh;
+  margin-top: 50px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.contactos p, .contactos a{
+  padding: 10px 0;
+  color: var(--color-principal);
+  line-height: 1.5;
+}
+.contactos p{
+  line-height: 1.2;
+  font-size: 17px;
+  color: var(--color-principal);
+}
+.divContactar{
+  width: 100%;
+}
+.social{
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+}
+.social a{
+  margin-top: 15px;
+}
+
+
+
+
+
+/* Para ocultar las barras de desplazamiento laterales */
+.scroll-containerAbout,
+.scroll-container,
+.scroll-containerContact {
+  overflow-x: hidden;
+}
+
+/* Agregar más selectores si tienes otros contenedores similares */
+
+/* fin mobile */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+@media (min-width: 768px){
+    
+    /* Variables */
+    :root{
+      --peso-titulo: 700;
+      --peso-cuerpo: 400;
+      --size-h1: 25px;
+      --size-h2: 22px;
+      --size-h3: 16px;
+      --size-cuerpo: 13px;
+      --padding-web: 4%;
+      --margin-left: 20px;
+    }
+
+
+    /* header */
+  header{
+      height:45px;
+  }
+  nav{
+      height:45px ;
+    }
+  nav a{
+      margin: 20px 40px;
+      font-size: 20px;
+    }
+    /* fin del header */
+/* menu */
+.menu{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-principal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.indice, .redes{
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.redes{
+  height: 30vh;
+}
+.indice a{
+  margin: 10px 0;
+  font-size: 70px;
+  color: var(--color-negro);
+}
+
+.redes a{
+  margin: 10px 0;
+}
+.emailPhone{
+  margin-bottom:20px ;
+  display: flex;
+  flex-direction: column;
+}
+.emailD, .telefono{
+  margin: 10px 0;
+}
+.emailD p, .telefono p{
+  margin: 10px 0;
+  font-size: 25px;
+}
+.soccial{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.soccial a{
+  font-size: 35px;
+  margin: 20px;
+}
+
+/* fin menu */
+/* primera section- Palabras moviles + imagenes */
+.contenerdorInit{
+
+  background-color: var(--color-principal);
+  margin-top: 0px;
+}
+.palabra-container {
+    width: 40%;
+    top: 0%;
+    left: 20%;
+  }
+.palabra-containerDos{
+    width: 100%;
+    top: 0%;
+    left: 15%;
+  }
+.palabra-containerTres{
+    font-style: italic;
+    width: 100%;
+    position: relative;
+    top: 1%;
+    left: 135px; 
+}
+ .palabra-containerCuatro{
+    font-style: italic;
+    width: 100%;
+    position: relative;
+    top: 1%;
+    left: 15%;
+}
+.contenerdorInit div p{
+    font-size: 95px;
+} 
+
+/* imagenes primera section/ carrousel estatico */
+/* cuadro imagenes */
+.sectionRelative{
+  top: 45px;
+}
+.cuadrito{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 22%;
+  left: 30%;
+}
+.cuadritoDos{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 32%;
+  right: 5%;
+}
+.cuadritoTres{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 60%;
+  left: 8%;
+}
+.cuadritoCuatro{
+  width: 150px;
+  height: 180px;
+  position: absolute;
+  bottom:20%;
+  right: 15%;
+}
+/* texto fijo */
+.textoHeader{
+  width: 250px;
+  height: 120px;
+  position: fixed;
+  bottom: 70px;
+  left: 70px;
+}
+.textoHeader p{
+  font-size: 30px;
+}
+/* botton para volver a la parte superior de la web */
+.arriba{
+  color: var(--color-principal);
+  width: 150px;
+  height: 45px;
+  position: fixed;
+  bottom: 25px;
+  right: 0px;
+  z-index: 150;
+}
+/* carrousel imagens */
+.contenedor-imagenes, .contenedor-imagenesDos, .contenedor-imagenesTres, .contenedor-imagenesCuatro {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.contenedor-imagenes img, .contenedor-imagenesDos img, .contenedor-imagenesTres img,.contenedor-imagenesCuatro img{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  display: none; 
+}
+.mostrar-imagen {
+  display: block;
+  animation: fade 1s ease-in-out;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* fin carrousel imagenes */
+/* fin del main */
+
+/* section 2 rotulos más segundas letras en movimiento */
+/* segunda section primeros ROtulos */
+  /* rotulos */
+/* tres */
+.container  {
+  margin-top: 500px;
+  height: 300px;
+}  
+.move {
+  height: 100px;
+  font-size: 48px;
+}
+.move2{
+  font-family: var(--fuente-cuerpo);
+  font-size: 46px;
+}
+/* fin del primer rotulo */
+
+/* segundo texto animado */
+.containerPalabrasDos{
+  padding: 100px 0;
+  height: 100vh;
+}
+.word, .wordDos, .wordTres,.wordCuatro,.wordCinco, .wordSeis,.wordSiete {
+  font-size: 70px;
+}
+.word{
+  left: 180px;
+}
+.wordCuatro{
+  left: 210px;
+}
+.wordTres{
+  left: 150px;
+}
+.wordDos{
+  left: 200px;
+}
+.wordCinco{
+  left: 50px;
+}
+.wordSeis{
+  left: 230px;
+}
+.wordSiete{
+  left:480px;
+}
+/* fin segundas palabras con movimientos   */
+
+
+/* portfolio */
+/* primer parrafo */
+.primerParrafo{
+  padding: 5%;
+  padding-top: 100px;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.primerParrafo p{
+  padding-left: 30%;
+  line-height: 1.3;
+  font-size: 24px;
+}
+.containerTextoAnimado h2{
+  height: 300px !important;
+  font-size: 85px;
+}
+/* final primmer parrafo */
+/* links */
+.link{
+  width: 90%;
+  height: 470px;
+  margin: 10px;
+}
+.azul{
+  height: 60px;
+  font-size: 60px;
+}
+/* fin de links */
+/* about */
+.textosAbout{
+  padding-top: 80px;
+}
+.primerParrafoAbout{
+  padding: 100px 0 50px;
+}
+.about {
+  margin: 0px 5% 0px;
+  padding-bottom: 20px;
+}
+.about:last-child{
+  padding-bottom: 100px;
+}
+.about3, .about4, .about5{
+  width: calc(100%/3);
+}
+.triada{
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about p{
+  font-size: 20px;
+}
+/*    rotulos  2 */ 
+.moveAbout {
+  height: 80px;
+  font-size:45px;
+}
+/* fin rotulos 2 about */
+
+
+/* contacto */
+/* rotulos 3 */
+.containerContact{
+  height: 300px;
+}
+.contact{
+  height: 80px;
+  font-size: 55px;
+  letter-spacing: 4px;
+}
+/* fin rotulo 3 contact */
+
+
+
+
+/* footer */
+footer{
+  height: 100vh;
+} 
+.textoFooter{
+  width: 45%;
+  height: 120px;
+}
+.textoFooter p{
+  font-size: 20px;
+}
+.contactos p{
+  font-size: 19px;
+}
+/* fin Ipad */
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive extra 900 */
+@media (min-width: 800px){
+    
+
+
+
+
+  /* imagenes primera section/ carrousel estatico */
+  /* cuadro imagenes */
+  
+  .cuadrito{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 8%;
+  left: 20%;
+  }
+  .cuadritoDos{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 32%;
+  right: 5%;
+  }
+  .cuadritoTres{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 70%;
+  left:38%;
+  }
+  .cuadritoCuatro{
+  width: 150px;
+  height: 180px;
+  position: absolute;
+  bottom:10%;
+  right: 15%;
+  }
+  /* texto fijo */
+  .textoHeader{
+  width: 250px;
+  height: 120px;
+  position: fixed;
+  bottom: 70px;
+  left: 70px;
+  font-size: 30px;
+  }
+  
+  
+  
+  
+  }
+
+
+/* fin 800 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive extra 900 */
+@media (min-width: 900px){
+    
+  #cursor{
+    width: 35px;
+    height: 35px;
+    background-color: orange;
+    opacity: 1;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 3000;
+    transition: 0.13s;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    mix-blend-mode: difference;
+    display: block;
+  }
+
+
+
+  /* imagenes primera section/ carrousel estatico */
+  /* cuadro imagenes */
+  
+  .cuadrito{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 8%;
+  left: 20%;
+  }
+  .cuadritoDos{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 32%;
+  right: 5%;
+  }
+  .cuadritoTres{
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 70%;
+  left:38%;
+  }
+  .cuadritoCuatro{
+  width: 150px;
+  height: 180px;
+  position: absolute;
+  bottom:10%;
+  right: 15%;
+  }
+  /* texto fijo */
+  .textoHeader{
+  width: 250px;
+  height: 120px;
+  position: fixed;
+  bottom: 70px;
+  left: 70px;
+  font-size: 30px;
+  }
+  
+  
+  
+  
+  }
+
+
+/* fin 900 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive extra 1000 */
+@media (min-width: 1000px){
+    
+
+
+
+
+/* imagenes primera section/ carrousel estatico */
+/* cuadro imagenes */
+
+.cuadrito{
+width: 150px;
+height: 80px;
+position: absolute;
+top: 10%;
+left: 30%;
+}
+.cuadritoDos{
+width: 150px;
+height: 80px;
+position: absolute;
+top: 32%;
+right: 5%;
+}
+.cuadritoTres{
+width: 150px;
+height: 80px;
+position: absolute;
+top: 70%;
+left:38%;
+}
+.cuadritoCuatro{
+width: 150px;
+height: 180px;
+position: absolute;
+bottom:10%;
+right: 15%;
+}
+/* texto fijo */
+.textoHeader{
+width: 250px;
+height: 120px;
+position: fixed;
+bottom: 70px;
+left: 70px;
+font-size: 30px;
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+@media (min-width: 1366px){
+    
+  /* Variables */
+  :root{
+    --peso-titulo: 700;
+    --peso-cuerpo: 400;
+    --size-h1: 25px;
+    --size-h2: 22px;
+    --size-h3: 16px;
+    --size-cuerpo: 13px;
+    --padding-web: 4%;
+    --margin-left: 20px;
+  }
+  /* header */
+  header{
+      height:80px;
+  }
+  nav{
+      height:80px ;
+    }
+  nav a{
+      margin: 20px 60px;
+      font-size: 27px;
+   }
+/* fin del header */
+/* menu */
+.divMenu{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-principal);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  display: none;
+}
+.active{
+  display: block;
+}
+.menu{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-principal);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.indice, .redes{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.indice a{
+  margin: 10px 0;
+  font-size: 100px;
+  color: var(--color-negro);
+}
+.indice{
+  margin-left: 10%;
+  width: 40%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.redes{
+  margin-right: 10%;
+  width: 40%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+}
+.redes a{
+  margin: 20px 0;
+}
+.emailPhone{
+  display: flex;
+  flex-direction: column;
+}
+.emailD, .telefono{
+  margin: 0px 0 20px;
+}
+.emailD p, .telefono p{
+  font-size: 35px;
+  margin: 10px 0;
+}
+.emailPhone, .soccial{
+  margin: 20px 0;
+}
+.soccial{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.soccial a{
+  font-size: 50px;
+  margin: 40px 40px 0 0;
+}
+/* fin menu */
+/* primera section- Palabras moviles + imagenes */
+.MainParteSupeior{
+  width: 100%;
+  height: 150vh;
+}
+.palabra-container {
+    width: 100%;
+    top: 5%;
+    left: 35%;
+}
+.palabra-containerDos{
+    width: 100%;
+    top: 5%;
+    left: 15%;
+}
+.palabra-containerTres{
+    font-style: italic;
+    width: 100%;
+    top: 5%;
+    left: 25%; 
+  }
+  .palabra-containerCuatro{
+    font-style: italic;
+    width: 100%;
+    top: 5%;
+    left: 5%;
+  }
+  .contenerdorInit div p{
+    font-size: 150px;
+  } 
+
+/* imagenes primera section/ carrousel estatico */
+/* cuadro imagenes */
+.sectionRelative{
+  top: 80px;
+}
+.cuadrito{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  top: 3%;
+  left: 20%;
+  border: none !important;
+}
+.cuadritoDos{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  top: 20%;
+  right: 14% ;
+  border: none !important;
+}
+.cuadritoTres{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  top: 38%;
+  left: 9%;
+  border: none !important;
+}
+.cuadritoCuatro{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  bottom: 14%;
+  right: 15%;
+  border: none !important;
+}
+/* texto fijo */
+.textoHeader{
+  width: 250px;
+  height: 120px;
+  position: fixed;
+  top: 150px;
+  left: 1080px;
+}
+.textoHeader p{
+  font-size: 24px;
+}
+/* botton para volver a la parte superior de la web */
+.arriba{
+  color: var(--color-principal);
+  width: 150px;
+  height: 45px;
+  position: fixed;
+  bottom: 25px;
+  right: 0px;
+  z-index: 150;
+}
+/* carrousel imagens */
+.contenedor-imagenes, .contenedor-imagenesDos, .contenedor-imagenesTres, .contenedor-imagenesCuatro {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.contenedor-imagenes img, .contenedor-imagenesDos img, .contenedor-imagenesTres img,.contenedor-imagenesCuatro img{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  display: none; 
+}
+.mostrar-imagen {
+  display: block;
+  animation: fade 1s ease-in-out;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+  /* fin del header */
+   /* rotulos */
+/* tres */
+.container  {
+  margin-top: 500px;
+  height: 500px;
+}  
+.move {
+  height: 200px;
+  font-size: 80px;
+}
+.move2{
+  font-family: var(--fuente-cuerpo);
+  font-size: 80px;
+}
+/* fin del primer rotulo */
+
+/* segundo texto animado */
+.containerPalabrasDos{
+  height: 120vh;
+}
+.word, .wordDos, .wordTres,.wordCuatro,.wordCinco, .wordSeis,.wordSiete {
+  font-size: 100px;
+}
+.word{
+  left: 320px;
+}
+.wordCuatro{
+  left: 210px;
+}
+.wordTres{
+  left: 350px;
+}
+.wordDos{
+  left: 450px;
+}
+.wordCinco{
+  left: 250px;
+}
+.wordSeis{
+  left: 430px;
+}
+.wordSiete{
+  left:680px;
+}
+/* fin segundas palabras con movimientos   */
+
+
+/* work */
+/* portfolio */
+/* primer parrafo */
+.primerParrafo{
+  width: 100%;
+  padding: 5%;
+  padding-top: 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 150;
+}
+.tituloWords{
+  height: 60vh;
+}
+.primerParrafo p{
+  padding-left: 40%;
+  font-size: 27px;
+}
+.containerTextoAnimado h2{
+  padding-right: 50%;
+  height: 350px !important;
+  font-size: 120px;
+}
+/* final primmer parrafo */
+.enlacesWords{
+  display: none;
+}
+.contenedorImgPc{
+  display: block;
+}
+.contenedorImgPc{
+  padding-top: 300px;
+  width: 100%;
+  height: 450vh;
+  background-color:var(--color-negro);
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 150;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position:relative;
+  top: 0;
+  left: 0;
+  z-index: 1250;
+}
+.image {
+  object-fit:cover;
+  transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  border-radius: 50%;
+  z-index: 50;
+}
+/* fin del work */
+/* about */
+.textosAbout{
+  height: 200vh;
+  padding-top: 80px;
+}
+.primerParrafoAbout{
+  padding: 200px 0 50px;
+}
+.about {
+  margin: 0px 5% 0px;
+  padding-bottom: 20px;
+}
+.about h2{
+  font-size: 40px;
+}
+.about:last-child{
+  padding-bottom: 100px;
+}
+.about3, .about4, .about5{
+  width: calc(100%/3);
+}
+.triada{
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+.about p{
+  font-size: 24px;
+}
+/*    rotulos  2 */ 
+.moveAbout {
+  height: 100px;
+  font-size: 95px;
+}
+/* fin de about */
+/* contacto */
+/* rotulos 3 */
+.containerContact{
+  height: 400px;
+}
+.contact{
+  height: 100px;
+  font-size: 95px;
+  letter-spacing: 5px;
+}
+/* fin rotulo 3 contact */
+
+/* footer */
+footer{
+  height: 150vh;
+} 
+.textoFooter{
+  width: 45%;
+  height: 220px;
+  margin-left: 100px;
+}
+.textoFooter p{
+  font-size: 35px;
+}
+.contactos{
+  margin-top: 100px;
+  height: 60vh;
+  width: 80vw;
+}
+.contactos p{
+  font-size: 30px;
+}
+.mail,.phone{
+  font-size: 40px !important;
+}
+.social a{
+  font-size: 40px;
+}
+/* fin Ipad */
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* especial monitor */
+/* Responsive */
+@media (min-width: 1500px){
+    
+  /* Variables */
+  :root{
+    --peso-titulo: 700;
+    --peso-cuerpo: 400;
+    --size-h1: 25px;
+    --size-h2: 22px;
+    --size-h3: 16px;
+    --size-cuerpo: 13px;
+    --padding-web: 4%;
+    --margin-left: 20px;
+  }
+  /* header */
+  header{
+      height:80px;
+  }
+  nav{
+      height:80px ;
+    }
+  nav a{
+      margin: 20px 60px;
+      font-size: 27px;
+   }
+    /* fin del header */
+
+    /* menu */
+.active{
+  display: block;
+}
+.indice a{
+  margin: 20px 0;
+  font-size: 110px;
+}
+.redes a{
+  margin: 30px 0;
+}
+.emailPhone{
+  display: flex;
+  flex-direction: column;
+}
+.emailD, .telefono{
+  margin: 0px 0 20px;
+}
+.emailD p, .telefono p{
+  font-size: 40px;
+  margin: 20px 0;
+}
+.emailPhone, .soccial{
+  margin: 20px 0;
+}
+.soccial a{
+  font-size: 50px;
+  margin: 40px 40px 0 0;
+}
+/* fin menu */
+/* primera section- Palabras moviles + imagenes */
+.MainParteSupeior{
+  width: 100%;
+  height: 150vh;
+}
+  .palabra-container {
+    width: 100%;
+    top: 5%;
+    left: 35%;
+  }
+  .palabra-containerDos{
+    width: 100%;
+    top: 5%;
+    left: 15%;
+  }
+  .palabra-containerTres{
+    font-style: italic;
+    width: 100%;
+    top: 5%;
+    left: 25%; 
+  }
+  .palabra-containerCuatro{
+    font-style: italic;
+    width: 100%;
+    top: 5%;
+    left: 5%;
+  }
+  .contenerdorInit div p{
+    font-size: 160px;
+  } 
+
+/* imagenes primera section/ carrousel estatico */
+/* cuadro imagenes */
+.sectionRelative{
+  top: 80px;
+}
+.cuadrito{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  top: 2%;
+  left: 22%;
+  border: none !important;
+}
+.cuadritoDos{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  top: 20%;
+  right: 21% ;
+  border: none !important;
+}
+.cuadritoTres{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  top: 39%;
+  left: 12%;
+  border: none !important;
+}
+.cuadritoCuatro{
+  width: 200px;
+  height: 135px !important;
+  position: absolute;
+  bottom: 14%;
+  right: 23%;
+  border: none !important;
+}
+/* texto fijo */
+.textoHeader{
+  width: 250px;
+  height: 120px;
+  position: fixed;
+  top: 150px;
+  left: 1080px;
+}
+/* botton para volver a la parte superior de la web */
+.arriba{
+  color: var(--color-principal);
+  width: 150px;
+  height: 45px;
+  position: fixed;
+  bottom: 25px;
+  right: 0px;
+  z-index: 150;
+}
+/* carrousel imagens */
+.contenedor-imagenes, .contenedor-imagenesDos, .contenedor-imagenesTres, .contenedor-imagenesCuatro {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.contenedor-imagenes img, .contenedor-imagenesDos img, .contenedor-imagenesTres img,.contenedor-imagenesCuatro img{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  display: none; 
+}
+.mostrar-imagen {
+  display: block;
+  animation: fade 1s ease-in-out;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+  /* fin del header */
+
+/* rotulos */
+/* tres */
+.container  {
+  margin-top: 500px;
+  padding-top: 100px;
+  height: 400px;
+}  
+.move {
+  height: 130px;
+  font-size: 85px;
+}
+.move2{
+  font-family: var(--fuente-cuerpo);
+  font-size: 80px;
+}
+/* fin del primer rotulo */
+
+/* segundo texto animado */
+.containerPalabrasDos{
+  height: 110vh;
+}
+.word, .wordDos, .wordTres,.wordCuatro,.wordCinco, .wordSeis,.wordSiete {
+  font-size: 105px;
+}
+.word{
+  left: 420px;
+}
+.wordCuatro{
+  left: 310px;
+}
+.wordTres{
+  left: 450px;
+}
+.wordDos{
+  left: 550px;
+}
+.wordCinco{
+  left: 350px;
+}
+.wordSeis{
+  left: 530px;
+}
+.wordSiete{
+  left:780px;
+}
+/* fin segundas palabras con movimientos   */
+
+
+/* work */
+/* portfolio */
+/* primer parrafo */
+.primerParrafo{
+  width: 100%;
+  padding: 5%;
+  padding-top: 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 150;
+}
+.primerParrafo p{
+  padding-left: 40%;
+  font-size: 27px;
+}
+.containerTextoAnimado h2{
+  padding-right: 50%;
+  height: 350px !important;
+  font-size: 120px;
+}
+/* final primmer parrafo */
+.enlacesWords{
+  display: none;
+}
+/* fin del work */
+/* about */
+.textosAbout{
+  height: 160vh;
+  padding-top: 80px;
+}
+.primerParrafoAbout{
+  padding: 200px 0 50px;
+}
+.about {
+  margin: 0px 5% 0px;
+  padding-bottom: 20px;
+}
+.about h2{
+  font-size: 40px;
+}
+.about:last-child{
+  padding-bottom: 100px;
+}
+.about3, .about4, .about5{
+  width: calc(100%/3);
+}
+.triada{
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+.about p{
+  font-size: 24px;
+}
+/*    rotulos  2 */ 
+.moveAbout {
+  height: 100px;
+  font-size: 95px;
+}
+/* fin de about */
+/* contacto */
+/* rotulos 3 */
+.containerContact{
+  height: 400px;
+}
+.contact{
+  height: 100px;
+  font-size: 100px;
+  letter-spacing: 10px;
+}
+/* fin rotulo 3 contact */
+
+/* footer */
+footer{
+  height: 150vh;
+} 
+.textoFooter{
+  width: 45%;
+  height: 220px;
+  margin-left: 100px;
+}
+.textoFooter p{
+  font-size: 35px;
+}
+.contactos{
+  margin-top: 100px;
+  height: 60vh;
+  width: 80vw;
+}
+.contactos p{
+  font-size: 30px;
+}
+.mail,.phone{
+  font-size: 40px !important;
+}
+.social a{
+  font-size: 40px;
+}
+/* fin Ipad */
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+@media (min-width: 1920px){
+    
+  /* Variables */
+  :root{
+    --peso-titulo: 700;
+    --peso-cuerpo: 400;
+    --size-h1: 25px;
+    --size-h2: 22px;
+    --size-h3: 16px;
+    --size-cuerpo: 13px;
+    --padding-web: 4%;
+    --margin-left: 20px;
+  }
+  /* header */
+  header{
+      height:100px;
+  }
+  nav{
+      height:100px ;
+    }
+  nav a{
+      margin: 25px 80px;
+      font-size: 35px;
+   }
+    /* fin del header */
+/* primera section- Palabras moviles + imagenes */
+.MainParteSupeior{
+  width: 100%;
+  height: 150vh;
+}
+.palabra-container {
+    width: 100%;
+    top: 5%;
+    left: 45%;
+}
+.palabra-containerDos{
+    width: 100%;
+    top: 50px;
+    left: 27%;
+}
+.palabra-containerTres{
+    font-style: italic;
+    width: 100%;
+    top: 5%;
+    left: 35%; 
+}
+.palabra-containerCuatro{
+    font-style: italic;
+    width: 100%;
+    top: 5%;
+    left: 10%;
+ }
+.contenerdorInit div p{
+    font-size: 200px;
+} 
+/* imagenes primera section/ carrousel estatico */
+/* cuadro imagenes */
+.sectionRelative{
+  top: 80px;
+}
+.cuadrito{
+  width: 300px;
+  height: 180px !important;
+  position: absolute;
+  top: 9%;
+  left: 29%;
+  border: none !important;
+}
+.cuadritoDos{
+  width: 300px;
+  height: 180px !important;
+  position: absolute;
+  top: 24%;
+  right: 4%;
+  border: none !important;
+}
+.cuadritoTres{
+  width: 300px;
+  height: 180px !important;
+  position: absolute;
+  top: 42.5%;
+  left: 18%;
+  border: none !important;
+}
+.cuadritoCuatro{
+  width: 300px;
+  height: 180px !important;
+  position: absolute;
+  bottom: 13%;
+  right: 13%;
+  border: none !important;
+}
+/* texto fijo */
+.textoHeader{
+  width: 250px;
+  height: 120px;
+  position: fixed;
+  top: 150px;
+  left: 1500px;
+}
+.textoHeader p{
+  font-size: 30px;
+}
+/* botton para volver a la parte superior de la web */
+.arriba{
+  color: var(--color-principal);
+  width: 150px;
+  height: 45px;
+  position: fixed;
+  bottom: 25px;
+  right: 0px;
+  z-index: 150;
+}
+/* carrousel imagens */
+  /* fin del header */
+   /* rotulos */
+/* tres */
+.container  {
+  margin-top: 600px;
+  height: 500px;
+}  
+.move {
+  height: 150px;
+  font-size: 100px;
+}
+.move2{
+  font-family: var(--fuente-cuerpo);
+  font-size: 100px;
+}
+/* fin del primer rotulo */
+
+/* segundo texto animado */
+.containerPalabrasDos{
+  height: 110vh;
+  padding-top:300px ;
+}
+.word, .wordDos, .wordTres,.wordCuatro,.wordCinco, .wordSeis,.wordSiete {
+  font-size: 125px;
+}
+.word{
+  left: 620px;
+}
+.wordCuatro{
+  left: 510px;
+}
+.wordTres{
+  left: 600px;
+}
+.wordDos{
+  left: 750px;
+}
+.wordCinco{
+  left: 550px;
+}
+.wordSeis{
+  left: 530px;
+}
+.wordSiete{
+  left:980px;
+}
+/* fin segundas palabras con movimientos   */
+
+
+/* work */
+/* portfolio */
+/* primer parrafo */
+.primerParrafo{
+  padding-top: 200px;
+}
+.primerParrafo p{
+  padding-left: 50%;
+  font-size: 35px;
+}
+.containerTextoAnimado h2{
+  padding-right: 50%;
+  height: 550px !important;
+  font-size: 150px;
+}
+/* final primmer parrafo */
+.enlacesWords{
+  display: none;
+}
+/* fin del work */
+/* about */
+.textosAbout{
+  height: 150vh;
+  padding-top: 100px;
+}
+.primerParrafoAbout{
+  padding: 300px 0 50px;
+}
+.about h2{
+  font-size: 45px;
+}
+.about:last-child{
+  padding-bottom: 100px;
+}
+.about p{
+  font-size: 35px;
+}
+/*    rotulos  2 */ 
+.moveAbout {
+  height: 150px;
+  font-size: 100px;
+}
+/* fin de about */
+/* contacto */
+/* rotulos 3 */
+.containerContact{
+  height: 400px;
+}
+.contact{
+  height: 150px;
+  font-size: 85px;
+  letter-spacing: 5px;
+}
+/* fin rotulo 3 contact */
+
+/* footer */
+.textoFooter{
+  width: 45%;
+  height: 220px;
+  margin-left: 100px;
+}
+.textoFooter p{
+  font-size: 40px;
+}
+.contactos{
+  margin-top: 100px;
+  height: 60vh;
+  width: 80vw;
+}
+.contactos p{
+  font-size: 30px;
+}
+.mail,.phone{
+  font-size: 50px !important;
+}
+.social a{
+  font-size: 50px;
+}
+/* fin Ipad */
+
+
+
+
+}
+
+
